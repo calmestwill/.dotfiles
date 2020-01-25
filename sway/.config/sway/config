@@ -45,10 +45,6 @@ default_border pixel 1
 # ---------- Input Configuration ----------
 # -----------------------------------------
 
-# Global settings
-input "*" {
-	xkb_layout "gb"
-}
 # Touchpad settings
 input "1102:4618:AUI1661:00_044E:120A_Touchpad" {
 	natural_scroll enabled
