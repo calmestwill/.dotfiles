@@ -1,0 +1,175 @@
+# -------------------------------
+# ---------- Variables ----------
+# -------------------------------
+
+# Super key
+set $mod Mod4
+# Home row direction keys
+set $left h
+set $down j
+set $up k
+set $right l
+# Terminal and dmenu
+set $term urxvt
+set $menu rofi -show run
+# Wallpaper
+set $wallpaper /home/will/Pictures/Wallpapers/arch.png
+# Workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# -------------------------------------------
+# ---------- Display Configuration ----------
+# -------------------------------------------
+
+# Set wallpaper
+output * bg $wallpaper fill
+# Auto lock, turn of display after inactivity and lock on sleep
+exec swayidle -w \
+         timeout 600 'swaymsg exec /home/will/.config/sway/lock.sh' \
+         timeout 900 'swaymsg "output * dpms off"' \
+              resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaymsg exec /home/will/.config/sway/lock.sh'
+hide_edge_borders smart
+default_border pixel 1
+
+# -----------------------------------------
+# ---------- Input Configuration ----------
+# -----------------------------------------
+
+# Global settings
+input "*" {
+	xkb_layout "gb"
+}
+# Touchpad settings
+input "1102:4618:AUI1661:00_044E:120A_Touchpad" {
+	natural_scroll enabled
+	tap enabled
+        dwt disabled
+	scroll_factor 1.25
+        accel_profile adaptive
+        scroll_method two_finger
+        tap_button_map lrm
+}
+
+# -------------------------------------------
+# ---------- Startup configuration ----------
+# -------------------------------------------
+
+# Start the status bar
+exec waybar -c /home/will/.config/waybar/config.json -s /home/will/.config/waybar/style.css
+# Start mako for notifications
+exec mako --default-timeout 5000 --icons 1 --background-color "#232c31e0" --text-color "#9ea7a6" --font Ubuntu
+# Startup programs
+exec nm-applet --indicator
+exec blueman-applet
+
+# ------------------------------
+# ---------- Keybinds ----------
+# ------------------------------
+
+# SWAY
+bindsym $mod+Shift+q kill # Kill window
+floating_modifier $mod normal # Modifer to resize/move floating windows
+bindsym $mod+Shift+r reload # Reload the sway configuration
+bindsym $mod+Shift+w exec /home/will/.config/sway/lock.sh # Lock the screen
+bindsym $mod+Escape exec swaynag -t warning -m 'Do you want to exit Sway?' -b 'Yes, exit sway' 'swaymsg exit' # Exit sway
+
+# APPLICATIONS
+bindsym $mod+Return exec $term # Terminal
+bindsym $mod+d exec $menu # Launcher
+bindsym $mod+Shift+c exec firefox
+bindsym $mod+Shift+e exec urxvt -e ranger
+bindsym $mod+Shift+y exec urxvt -e mpsyt
+
+# COMMAND KEYBINDS
+bindsym XF86MonBrightnessUp exec --no-startup-id "light -A 10"
+bindsym XF86MonBrightnessDown exec --no-startup-id "light -U 10"
+bindsym XF86AudioMute exec ~/.config/sway/volume_keys.sh M  # To adjust the volume
+bindsym XF86AudioRaiseVolume exec ~/.config/sway/volume_keys.sh +5%
+bindsym XF86AudioLowerVolume exec ~/.config/sway/volume_keys.sh -5%
+
+# WINDOW MANAGEMENT
+# Move focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+# Move focus with arrow keys
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+# Move windows
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+# Move windows with the arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+# Switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+# Change container type
+bindsym $mod+b splith
+bindsym $mod+v splitv
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+space floating toggle
+# Swap focus between the tiling area and the floating area
+bindsym $mod+space focus mode_toggle
+# Move focus to the parent container
+bindsym $mod+a focus parent
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+# Cycle scratchpad windows
+bindsym $mod+minus scratchpad show
+# Resizing containers
+mode "resize" {
+    # Change window size
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+    # Change window size with the arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
