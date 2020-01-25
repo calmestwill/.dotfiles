@@ -13,7 +13,7 @@ set $right l
 set $term urxvt
 set $menu rofi -show run
 # Wallpaper
-set $wallpaper /home/will/Pictures/Wallpapers/arch.png
+set $wallpaper arch.png
 # Workspaces
 set $ws1 "1"
 set $ws2 "2"
@@ -34,10 +34,10 @@ set $ws10 "10"
 output * bg $wallpaper fill
 # Auto lock, turn of display after inactivity and lock on sleep
 exec swayidle -w \
-         timeout 600 'swaymsg exec /home/will/.config/sway/lock.sh' \
+         timeout 600 'swaymsg exec ~/.config/sway/lock.sh' \
          timeout 900 'swaymsg "output * dpms off"' \
               resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaymsg exec /home/will/.config/sway/lock.sh'
+         before-sleep 'swaymsg exec ~/.config/sway/lock.sh'
 hide_edge_borders smart
 default_border pixel 1
 
@@ -65,7 +65,7 @@ input "1102:4618:AUI1661:00_044E:120A_Touchpad" {
 # -------------------------------------------
 
 # Start the status bar
-exec waybar -c /home/will/.config/waybar/config.json -s /home/will/.config/waybar/style.css
+exec waybar -c ~/.config/waybar/config.json -s ~/.config/waybar/style.css
 # Start mako for notifications
 exec mako --default-timeout 5000 --icons 1 --background-color "#232c31e0" --text-color "#9ea7a6" --font Ubuntu
 # Startup programs
@@ -80,7 +80,7 @@ exec blueman-applet
 bindsym $mod+Shift+q kill # Kill window
 floating_modifier $mod normal # Modifer to resize/move floating windows
 bindsym $mod+Shift+r reload # Reload the sway configuration
-bindsym $mod+Shift+w exec /home/will/.config/sway/lock.sh # Lock the screen
+bindsym $mod+Shift+w exec ~/.config/sway/lock.sh # Lock the screen
 bindsym $mod+Escape exec swaynag -t warning -m 'Do you want to exit Sway?' -b 'Yes, exit sway' 'swaymsg exit' # Exit sway
 
 # APPLICATIONS
