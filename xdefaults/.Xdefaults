@@ -1,21 +1,18 @@
+! miscellaneous settings
 URxvt*font: xft:Sauce Code Pro Nerd Font Mono:size=10
 URxvt.scrollBar: false
 URxvt.perl-ext-common: keyboard-select,tabbedex
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.cursorBlink: 1
 
-! tab extension
+! tab extension configuration
 URxvt.tabbed.new-button: false
 URxvt.tabbed.tab-numbers: false
 URxvt.tabbed.title: false
 
 ! special
-!URxvt*.background: rgba:1f00/1f00/1f00/e000
-!URxvt*.borderColor: rgba:1f00/1f00/1f00/c300
 URxvt*.borderColor: #232c31
 URxvt*.depth: 32
-
-! special
 *.foreground:   #9ea7a6
 *.background:   #232c31
 *.cursorColor:  #9ea7a6
