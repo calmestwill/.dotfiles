@@ -19,7 +19,7 @@ if [[ "$(hostname)" == "icarus" ]]; then
 	echo -e "\n${GREEN}Success!"
 elif [[ "$(hostname)" == "daedalus" ]]; then
 	echo -e "${CYAN}Mounting encrypted data partition..."
-	sudo veracrypt -t /dev/nvme0n1p7 -p "$(cat ~/.mount/pegasusPassphrase.txt)" -k ~/.mount/Pegasus --non-interactive
+	sudo veracrypt -t /dev/nvme0n1p7 -p "$(cat ~/.mount/pegasusPassphrase.txt)" -k ~/.mount/Pegasus /media/Pegasus --non-interactive
 	echo -e "\n${GREEN}Success!"
 else
 	echo -e "No drives for hostname. Have you set the correct hostname? \n"
