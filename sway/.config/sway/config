@@ -90,7 +90,7 @@ bindsym $mod+Shift+y exec urxvt -e mpsyt
 bindsym XF86MonBrightnessUp exec --no-startup-id "light -A 10"
 bindsym XF86MonBrightnessDown exec --no-startup-id "light -U 10"
 bindsym XF86AudioMute exec ~/.config/sway/volume_keys.sh M  # To adjust the volume
-bindsym --release Print exec grim ~/Pictures/Screenshots/$(date +'%s_grim.png') | wl-copy # Save screenshot and copy to clipboard 
+bindsym --release Print exec grim ~/Pictures/Screenshots/$(date +'%s_grim.png') # Save screenshot to screenshots folder 
 bindsym XF86AudioRaiseVolume exec ~/.config/sway/volume_keys.sh +2%
 bindsym XF86AudioLowerVolume exec ~/.config/sway/volume_keys.sh -2%
 
