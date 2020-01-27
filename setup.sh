@@ -17,7 +17,7 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
 
     echo -e "${YELLOW}Installing main packages...${RESET}"
-    pacman -S sway ranger rofi sway vim waybar rxvt-unicode zsh stow
+    pacman -S sway rofi ranger waybar rxvt-unicode
 
 else
     pacman -S stow
